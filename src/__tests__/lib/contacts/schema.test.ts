@@ -33,6 +33,24 @@ describe("contactInputSchema", () => {
     expect(parsed.notes).toBeNull();
   });
 
+  it("accepts a photo URL", () => {
+    const photoUrl = "https://example.com/ada.jpg";
+
+    const parsed = contactInputSchema.parse(
+      values({ photo_url: photoUrl }),
+    );
+
+    expect(parsed.photo_url).toBe(photoUrl);
+  });
+
+  it("converts an empty photo value to null", () => {
+    const parsed = contactInputSchema.parse(
+      values({ photo_url: "" }),
+    );
+
+    expect(parsed.photo_url).toBeNull();
+  });
+  
   it("trims what the user typed", () => {
     expect(contactInputSchema.parse(values({ company: "  Acme  " })).company).toBe(
       "Acme",
