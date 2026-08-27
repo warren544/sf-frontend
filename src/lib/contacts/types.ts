@@ -21,6 +21,7 @@ export interface Contact {
   created_at: string;
   updated_at: string;
   full_name: string;
+  photo_url: string | null
 }
 
 /** Every editable field, i.e. `ContactCreate` / `ContactReplace`. */
